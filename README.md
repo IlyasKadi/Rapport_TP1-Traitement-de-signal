@@ -4,12 +4,12 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <img src="![logo](https://user-images.githubusercontent.com/80456274/151718182-54d53cc9-69bb-4710-af0e-f2fda10c0743.jpg)" alt="Logo" width="550" height="380"">
+  ![logo](https://user-images.githubusercontent.com/80456274/151718182-54d53cc9-69bb-4710-af0e-f2fda10c0743.jpg)
   <h2 align="center"TP1 : Analyse spectrale d’un signal</h2>
   <h3 align="center">Transformée de Fourier discrète</h3>
 </div>
 
-![logo](https://user-images.githubusercontent.com/80456274/151718182-54d53cc9-69bb-4710-af0e-f2fda10c0743.jpg)
+
 <!-- TABLE OF CONTENTS -->
 
   <summary>Table of Contents</summary>
