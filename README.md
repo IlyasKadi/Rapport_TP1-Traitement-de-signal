@@ -22,7 +22,6 @@
       <li><a href="#Objectifs">Objectifs</a></li>
       <li><a href="#Représentation-temporelle-et-fréquentielle">Représentation temporelle et fréquentielle</a></li> 
       <li><a href="#Analyse-fréquentielle-du-chant-du-rorqual-bleu">Analyse fréquentielle du chant du rorqual bleu</a></li> 
-      <li><a href="#Commandes-susceptibles-de-vous-être-utiles">Commandes susceptibles de vous être utiles</a></li> 
   </ol>
 
 
