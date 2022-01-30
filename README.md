@@ -10,7 +10,6 @@
 
 <br />
 <div align="center">
-  <h2 align="center">TP1 : Analyse spectrale d’un signal</h2>
   <h3 align="center">Transformée de Fourier discrète</h3>
 </div>
 
