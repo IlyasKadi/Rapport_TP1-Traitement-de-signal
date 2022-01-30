@@ -164,6 +164,12 @@ DS=(fy2.^2)/length(x);
 subplot(3,2,5);
 plot(fsh,fftshift(DS));
 title('x(t) noised');
+
+
+fy2 = abs(fft((y+1.5*w_noise))); 
+subplot(3,2,6);
+plot(fsh,fftshift(fy2.^2));
+title('x(t) noised (old noise*1.5)');
 ```
 
 ![4_x(t)_noised](https://user-images.githubusercontent.com/80456274/151722307-522dd9fb-1c15-4524-8fe2-91e2ce0f92f8.jpg)
