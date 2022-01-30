@@ -75,6 +75,18 @@ fréquences 15Hz et 20Hz.
 Pour approximer la TF continue d’un signal x(t), représenté suivant un pas Te, on
 utilise les deux commandes : **fft et fftshif**.
 
+```matlab
+%--------------1------------------
+Te=1/50;
+x=[0:Te:10-Te];
+y = sin(30*pi*x) + sin(40*pi*x);
+subplot(3,2,1);
+plot(x,y);
+title('signal x(t) :');
+```
+
+![x(t)](https://user-images.githubusercontent.com/80456274/151722279-1a5ca9fb-f89c-4a23-952b-b61d0d3d7540.jpg)
+
 ▪ On remarquera que la TF est une fonction complexe et que la fonction ainsi
 obtenue décrit la TF de x(t) entre –1/(2Te) et 1/(2Te) par pas de 1/(nTe) où n
 est le nombre de points constituant le signal x(t).
@@ -87,9 +99,33 @@ de les inverser.
 en amplitude après créer le vecteur f qui correspond à l'échantillonnage du signal dans
 l'espace fréquentiel. Utilisez la commande abs.
 
+```matlab
+%--------------2------------------
+f=(0:length(x)-1)*(1/Te*length(x)); 
+fy=abs(fft(y));
+subplot(3,2,2);
+plot(f,fy);
+title('spectre du  x(t) :');
+```
+
+![2_spectre_x(t)](https://user-images.githubusercontent.com/80456274/151722287-7b5bedff-18ca-4cd5-9189-48fedcea32d1.jpg)
+
+
 3. Pour mieux visualiser le contenu fréquentiel du signal, utilisez la fonction fftshift,
 qui effectue un décalage circulaire centré sur zéro du spectre en amplitude obtenu par
 la commande fft.
+
+```matlab
+%--------------3------------------
+fsh=[-500/2:(500/2)-1]*50/500;
+fy=abs(fft(y));
+subplot(3,2,3);
+plot(fsh,fftshift(fy));
+title('spectre du  x(t) :');
+```
+
+![3_spectre_x(t)_shifted](https://user-images.githubusercontent.com/80456274/151722292-dd00f316-e109-4625-ba08-e41e9b8757b1.jpg)
+
 
 Un bruit correspond à tout phénomène perturbateur gênant la transmission ou
 l'interprétation d'un signal. Dans les applications scientifiques, les signaux sont
@@ -104,10 +140,16 @@ bruit. Il est à noter qu’un bruit blanc est une réalisation d'un processus a
 lequel la densité spectrale de puissance est la même pour toutes les fréquences de
 la bande passante. Ce bruit suit une loi normale de moyenne et variance données.
 
+```matlab
+%--------------4------------------
+w_noise = randn(size(x));
+subplot(3,2,4);
+plot(w_noise);
+title('noise');
+```
 La puissance du signal en fonction de la fréquence (densité spectrale de puissance)
 est une métrique couramment utilisée en traitement du signal. Elle est définie comme
 étant le carré du module de la TFD, divisée par le nombre d'échantillons de fréquence. 
-
 
 5- Calculez puis tracer le spectre de puissance du signal bruité centré à la fréquence
 zéro. Malgré le bruit, ont peut constater qu’il est toujours possible de distinguer les
@@ -115,6 +157,19 @@ fréquences du signal en raison des pics de puissance. En plus, on voit que, ent
 et 15Hz, la densité spectrale de puissance est relativement constante. Ceci est dû au
 bruit blanc gaussien.
 
+```matlab
+%--------------5------------------
+fy2 = abs(fft((y+w_noise))); 
+DS=(fy2.^2)/length(x);
+subplot(3,2,5);
+plot(fsh,fftshift(DS));
+title('x(t) noised');
+```
+
+![4_x(t)_noised](https://user-images.githubusercontent.com/80456274/151722307-522dd9fb-1c15-4524-8fe2-91e2ce0f92f8.jpg)
+
+
+![PART_I](https://user-images.githubusercontent.com/80456274/151722320-2d6f3561-7ef0-400b-8a70-0dff710407a0.jpg)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -135,7 +190,12 @@ correspond au chant du rorqual bleu du Pacifique. En effet, les appels de rorqua
 sont des sons à basse fréquence, ils sont à peine audibles pour les humains. Utiliser
 la commande **audioread** pour lire le fichier. Le son à récupérer correspond aux indices
 allant de 2.45e4 à 3.10e4.
-
+```matlab
+%--------------1------------------
+whaleFile = fullfile(matlabroot,'examples','matlab','data','bluewhale.au');
+[w,ft] = audioread(whaleFile);
+interval=w(2.45e4:3.10e4);
+```
 
 2- Ecoutez ce signal en utilisant la commande **sound**, puis visualisez-le.
 La TFD peut être utilisée pour identifier les composantes fréquentielles de ce signal
@@ -145,52 +205,110 @@ une puissance de 2. fft remplit automatiquement les données avec des zéros pou
 augmenter la taille de l'échantillon. Cela peut accélérer considérablement le calcul de
 la transformation.
 
-
+```matlab
+%--------------1------------------
+soundsc(w,ft);
+```
 
 
 3- Spécifiez une nouvelle longueur de signal n qui sera une puissance de 2, puis tracer
 la densité spectrale de puissance du signal.
 
-
-4- Déterminer à partir du tracé, la fréquence fondamentale du gémissement de rorqual
-bleu.
-
-
-
-
-
-<div align="center">
-    <img src="images/dialog.png"/>
-</div>
-
-> An example of a dialog to get a new task.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+```matlab
+%--------------3------------------
+fsh=[-500/2:(500/2)-1]*50/500;
+fy=abs(fft(y));
+subplot(3,2,3);
+plot(fsh,fftshift(fy));
+title('spectre du  x(t) :');
+```
 
 
 
 
-# Commandes-susceptibles-de-vous-être-utiles
-
-Rappel : Une aide en ligne de toutes les fonctions Matlab sont disponibles grâce à la
-commande : help nom_de_function
+![PART_II](https://user-images.githubusercontent.com/80456274/151722498-90feadfd-cc76-4eda-86dd-c93019f5a3e3.jpg)
 
 
-**plot**            permet de tracer une fonction
-**xlabel**          rajoute une légende à l’axe des abscisses
-**ylabel**          rajoute une légende à l’axe des ordonnées
-**title**           rajoute un titre à une figure
-**axis**            permet de modifier la valeur des axes
-**fft**             calcule une transformée de Fourier Rapide
-**fftshift**        réarrange la transformée de Fourier d’un signa
-**ifft**            calcule une transformée de Fourier inverse
-**linspace(a,b,n)** génère un vecteur de n valeurs équidistantes entre a et b
-**abs**             calcule une valeur absolue ou un module dans le cas complexe
-**real**            extrait la partie réelle d’un nombre complexe
-**imag**            extrait la partie imaginaire d’un nombre complex
+Code matlab
+
+```matlab
+
+clear all;
+close all;
+clc;
+
+%--------------I------------------
+figure(1);
+%--------------1------------------
+Te=1/50;
+x=[0:Te:10-Te];
+y = sin(30*pi*x) + sin(40*pi*x);
+subplot(3,2,1);
+plot(x,y);
+title('signal x(t) :');
+
+
+%--------------2------------------
+f=(0:length(x)-1)*(1/Te*length(x)); 
+fy=abs(fft(y));
+subplot(3,2,2);
+plot(f,fy);
+title('spectre du  x(t) :');
+
+
+%--------------3------------------
+fsh=[-500/2:(500/2)-1]*50/500;
+fy=abs(fft(y));
+subplot(3,2,3);
+plot(fsh,fftshift(fy));
+title('spectre du  x(t) :');
+
+
+%--------------4------------------
+w_noise = randn(size(x));
+subplot(3,2,4);
+plot(w_noise);
+title('noise');
+
+%--------------5------------------
+fy2 = abs(fft((y+w_noise))); 
+DS=(fy2.^2)/length(x);
+subplot(3,2,5);
+plot(fsh,fftshift(DS));
+title('x(t) noised');
+
+fy2 = abs(fft((y+1.5*w_noise))); 
+subplot(3,2,6);
+plot(fsh,fftshift(fy2.^2));
+title('x(t) noised (old noise*1.5)');
 
 
 
+
+%--------------II------------------
+figure(2);
+%--------------1------------------
+whaleFile = fullfile(matlabroot,'examples','matlab','data','bluewhale.au');
+[w,ft] = audioread(whaleFile);
+interval=w(2.45e4:3.10e4);
+
+%--------------2------------------
+soundsc(w,ft);
+
+%--------------3------------------
+subplot(2,1,1);
+Nint=length(interval);
+t=[0:Nint-1]*1/ft;
+plot(t,interval);
+title('Bluewhale signal');
+%DS de la puissance du signal
+fshift=[-Nint/2:Nint/2-1]*(ft/Nint)/10;
+DSP=abs(fft(interval).^2/Nint);
+subplot(2,1,2);
+plot(fshift,fftshift(DSP));
+title('DS de la puissance du signal')
+
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
