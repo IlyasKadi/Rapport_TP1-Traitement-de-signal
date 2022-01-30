@@ -103,7 +103,7 @@ l'espace fréquentiel. Utilisez la commande abs.
 %--------------2------------------
 f=(0:length(x)-1)*(1/Te*length(x)); 
 fy=abs(fft(y));
-subplot(3,2,2);
+subplot(3,2,2); 
 plot(f,fy);
 title('spectre du  x(t) :');
 ```
