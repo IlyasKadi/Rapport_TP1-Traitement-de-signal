@@ -213,7 +213,7 @@ la transformation.
 ```matlab
 %--------------1------------------
 soundsc(w,ft);
-```
+``` 
 
 
 3- Spécifiez une nouvelle longueur de signal n qui sera une puissance de 2, puis tracer
