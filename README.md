@@ -327,6 +327,6 @@ title('DS de la puissance du signal')
  
    Project Link : [Rapport_TP1 : Traitement-de-signal](https://github.com/IlyasKadi/Rapport_TP1-Traitement-de-signal)   
  
-  > Encadré par  : [Pr. AMMOUR Alae]()  
+  > Encadré par  : [Pr. AMMOUR Alae](https://ma.linkedin.com/in/alae-ammour-583678b2)  
                                                                                              
 <p align="right">(<a href="#top">back to top</a>)</p>
